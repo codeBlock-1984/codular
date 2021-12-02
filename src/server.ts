@@ -3,7 +3,13 @@ import config from './config';
 
 import appLoader from './app';
 
-const startServer = async () => {
+/* eslint-disable no-console */
+
+/**
+ * Creates and starts the server
+ * @returns {Promise} - 
+ */
+const startServer = async (): Promise<void> => {
   try {
     const port = config.app.port;
     const app = await appLoader();
@@ -12,9 +18,9 @@ const startServer = async () => {
     server.listen(port, () => {
       console.log(`Modular server is listening on port ${port}...`);
     });
-  } catch (error: any) {
-    console.log(`App failed to start: ${error.message}`)
+  } catch (error) {
+    console.log(`App failed to start: ${error.message}`);
   }
-}
+};
 
 startServer();
