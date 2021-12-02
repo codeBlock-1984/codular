@@ -4,13 +4,17 @@ import config from './config';
 import appLoader from './app';
 
 const startServer = async () => {
-  const port = config.app.port;
-  const app = await appLoader();
-  const server = http.createServer(app);
+  try {
+    const port = config.app.port;
+    const app = await appLoader();
+    const server = http.createServer(app);
 
-  server.listen(port, () => {
-    console.log(`Modular server is listening on port ${port}...`);
-  });
+    server.listen(port, () => {
+      console.log(`Modular server is listening on port ${port}...`);
+    });
+  } catch (error: any) {
+    console.log(`App failed to start: ${error.message}`)
+  }
 }
 
 startServer();
